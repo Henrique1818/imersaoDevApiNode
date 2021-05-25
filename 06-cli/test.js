@@ -19,14 +19,17 @@ describe('Suite de manipulação de Herois', () => {
     });
 
     it('deve cadastrar um heroi, usando arquivos', async () => {
-        const expected = {
-            ...DEFAULT_ITEM_CADASTRAR,
-            id: 2,
-            nome: 'Batman'
-        };
-        const resultado = await database.cadastrar(expected);
-        const [actual] = await database.listarArquivo(expected.id);
+        const expected = DEFAULT_ITEM_CADASTRAR;
+        const resultado = await database.cadastrar(DEFAULT_ITEM_CADASTRAR);
+        const [actual] = await database.listarArquivo(DEFAULT_ITEM_CADASTRAR.id);
 
         deepEqual(actual, expected);
+    });
+
+    it('deve remove um heroi por id', async () => {
+        const expected = true;
+        const resultado = await database.remover(DEFAULT_ITEM_CADASTRAR.id);
+
+        deepEqual(resultado, expected)
     });
 });
